@@ -1,10 +1,11 @@
 import sqlite3
 import pandas as pd
+from datetime import datetime
 
-timeframes = ['2015-05']
+time_frames = ['2015-05']
 
-for timeframe in timeframes:
-    connection = sqlite3.connect('{}.db'.format(timeframe))
+for time_frame in time_frames:
+    connection = sqlite3.connect('{}.db'.format(time_frame))
     cursor = connection.cursor()
     limit = 5000
     last_unix = 0
@@ -33,4 +34,4 @@ for timeframe in timeframes:
                     f.write(content + '\n')
         counter +=1
         if counter % 20 == 0:
-            print(counter*limit, 'rows completed this far')
+            print(counter*limit, 'rows completed @ {}'.format(str(datetime.now())))
